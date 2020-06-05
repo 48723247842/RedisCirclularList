@@ -1,7 +1,25 @@
-
 # https://github.com/andymccurdy/redis-py/blob/1f857f0053606c23cb3f1abd794e3efbf6981e09/tests/test_commands.py
 # https://github.com/ceberous/redis-manager-utils/blob/master/BaseClass.js
 # https://redis.io/commands/sadd
+
+def current( redis_connection , list_key ):
+	list_key_index = f"{list_key}.INDEX"
+
+	# 1.) Get Length
+	circular_list_length = redis_connection.llen( list_key )
+	if circular_list_length < 1:
+		return False
+
+	# 2.) Get Current Index
+	circular_list_index = redis_connection.get( list_key_index )
+	if circular_list_index is None:
+		circular_list_index = 0
+		redis_connection.set( list_key_index , circular_list_index )
+
+	# 3.) Get Current Value at Index
+	current_in_circle = redis_connection.lindex( list_key , circular_list_index )
+	current_in_circle = str( current_in_circle , 'utf-8' )
+	return current_in_circle
 
 def previous( redis_connection , list_key ):
 	list_key_index = f"{list_key}.INDEX"
