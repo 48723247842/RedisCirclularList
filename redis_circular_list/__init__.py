@@ -3,7 +3,7 @@
 # https://github.com/ceberous/redis-manager-utils/blob/master/BaseClass.js
 # https://redis.io/commands/sadd
 
-def previous_in_circular_list( redis_connection , list_key ):
+def previous( redis_connection , list_key ):
 	list_key_index = f"{list_key}.INDEX"
 	# 1.) Get Length
 	circular_list_length = redis_connection.llen( list_key )
@@ -31,7 +31,7 @@ def previous_in_circular_list( redis_connection , list_key ):
 	previous_in_circle = str( previous_in_circle , 'utf-8' )
 	return previous_in_circle
 
-def next_in_circular_list( redis_connection , list_key ):
+def next( redis_connection , list_key ):
 	list_key_index = f"{list_key}.INDEX"
 	# 1.) Get Length
 	circular_list_length = redis_connection.llen( list_key )

@@ -14,7 +14,7 @@ with pathlib.Path('./redis_circular_list/requirements.txt').open() as requiremen
 
 setuptools.setup(
 	name="redis_circular_list",
-	version="0.0.1",
+	version="0.0.2",
 	author="7435171",
 	author_email="48723247842@protonmail.com",
 	description="Redis Circular List",

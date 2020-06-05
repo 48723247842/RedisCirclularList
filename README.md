@@ -1,10 +1,19 @@
-# Local IP Finder from Mac Address
+# Redis Circular List
 
 ```
-python3 -m pip install local-ip-finder
+python3 -m pip install redis-circular-list
 ```
+
 ```
-from local_ip_finder import IPFinder
-finder = IPFinder()
-finder.from_mac_address("2c:64:1f:25:6b:3c")
+import redis
+import redis_circular_list
+
+redis_connection = redis.StrictRedis(
+	host="127.0.0.1" ,
+	port="6379" ,
+	db=1 ,
+	)
+
+next_in_circular_list = redis_circular_list.next( redis_connection , "LIST_KEY" )
+previous_in_circular_list = redis_circular_list.previous( redis_connection , "LIST_KEY" )
 ```
