@@ -26,4 +26,4 @@ fi
 git add .
 git commit -m "$NextCommitNumber"
 git remote add origin "$GITHUB_SSH_REPOSITORY_URL"
-git push origin master
+git push origin master --force
